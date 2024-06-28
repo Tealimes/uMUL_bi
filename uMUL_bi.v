@@ -1,4 +1,4 @@
-//By Alexander Peacock
+//By Alexander Peacock, undergrad at UCF ECE
 //email: alexpeacock56ten@gmail.com
 
 `include "sobolrng.v"
