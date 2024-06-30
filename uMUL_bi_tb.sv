@@ -160,7 +160,7 @@ module uMUL_bi_tb();
     always #5 iClk = ~iClk; //defines the clock
 
     initial begin 
-        $dumpfile("rep_uMUL_tb.vcd"); $dumpvars;
+        $dumpfile("uMUL_bi_tb.vcd"); $dumpvars;
 
         iClk = 1;
         iB = 0;
