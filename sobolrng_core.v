@@ -1,4 +1,5 @@
 //outputs the random number
+`ifndef sobolrng_core
 `define sobolrng_core
 
 module sobolrng_core #(
@@ -43,4 +44,6 @@ module sobolrng_core #(
         end
     end
 endmodule
+
+`endif
 

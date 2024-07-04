@@ -1,3 +1,4 @@
+`ifndef sobolrng
 `define sobolrng
 `define BITWIDTH8
 
@@ -132,5 +133,6 @@ module sobolrng #(
         .oRand(sobolseq)
     );
 
-
 endmodule
+
+`endif

@@ -1,5 +1,7 @@
 //By Alexander Peacock, undergrad at UCF ECE
 //email: alexpeacock56ten@gmail.com
+`ifndef uMUL_bi
+`define uMUL_bi
 
 `include "sobolrng.v"
 
@@ -12,6 +14,7 @@ module uMUL_bi #(
     input wire [BITWIDTH - 1: 0] iB,
     input wire loadB,
     input wire iClr,
+    output reg oB, 
     output reg oMult
 );
 
@@ -59,8 +62,11 @@ module uMUL_bi #(
     assign andBot = iA & (iB_buff > sobolseq);
 
     always@(*) begin
+        oB <= (iB_buff > sobolseq); //for testing purposes only
         oMult <= andTop | andBot;
     end
 
 endmodule
+
+`endif
 
