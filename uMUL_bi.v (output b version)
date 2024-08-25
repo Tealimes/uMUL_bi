@@ -1,5 +1,7 @@
-//By Alexander Peacock
+//By Alexander Peacock, undergrad at UCF ECE
 //email: alexpeacock56ten@gmail.com
+`ifndef uMUL_bi
+`define uMUL_bi
 
 `include "sobolrng.v"
 
@@ -19,6 +21,7 @@ module uMUL_bi #(
     reg [BITWIDTH-1:0] iB_buff; //to store a value in block
     wire [BITWIDTH-1:0] sobolseqIn;
     wire [BITWIDTH-1:0] sobolseq;
+    wire [BITWIDTH-1:0] sobolseqRan;
     wire andTop;
     wire andBot;
     wire iA_inv = ~iA;
@@ -55,14 +58,26 @@ module uMUL_bi #(
         .iClr(iClr),
         .sobolseq(sobolseq)
     );
+
+    sobolrng #(
+        .BITWIDTH(BITWIDTH)
+    ) u_sobolRandom (
+        .iClk(iClk),
+        .iRstN(iRstN),
+        .iEn(1),
+        .iClr(iClr),
+        .sobolseq(sobolseqRan)
+    );
     
     assign andTop = iA_inv & ~(iB_buff > sobolseqIn);
     assign andBot = iA & (iB_buff > sobolseq);
 
     always@(*) begin
-        oB <= (iB_buff > sobolseq); //for testing purposes only
         oMult <= andTop | andBot;
+        oB <= (iB_buff > sobolseqRan); //for testing purposes only
     end
 
 endmodule
+
+`endif
 
